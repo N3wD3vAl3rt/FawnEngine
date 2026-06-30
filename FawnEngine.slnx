@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="FawnEngine/FawnEngine.vcxproj" Id="b60d4461-87be-4e73-b09a-50c282b16759" />
+</Solution>
