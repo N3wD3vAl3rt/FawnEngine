@@ -1,8 +1,14 @@
 #pragma once
 
-namespace Input
+class Input
 {
-	void Update();
+public:
+	static void Update();
 
-	bool IsKeyDown(int virtualKey);
-}
+	static bool IsKeyDown(int key);
+	static bool IsKeyPressed(int key);
+
+private:
+	static bool keys[256];
+	static bool prevKeys[256];
+};

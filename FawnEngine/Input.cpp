@@ -1,16 +1,24 @@
 #include "Input.h"
+#include <Windows.h>
 
-#include <windows.h>
+bool Input::keys[256] = {};
+bool Input::prevKeys[256] = {};
 
-namespace Input
+void Input::Update()
 {
-	void Update()
+	for (int i = 0; i < 256; i++)
 	{
-		// Future keyboard, mouse, and controller updates will go here.
+		prevKeys[i] = keys[i];
+		keys[i] = (GetAsyncKeyState(i) & 0x8000);
 	}
+}
 
-	bool IsKeyDown(int virtualKey)
-	{
-		return (GetAsyncKeyState(virtualKey) & 0x8000) != 0;
-	}
+bool Input::IsKeyDown(int key)
+{
+	return keys[key];
+}
+
+bool Input::IsKeyPressed(int key)
+{
+	return keys[key] && !prevKeys[key];
 }

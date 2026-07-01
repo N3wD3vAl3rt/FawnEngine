@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include "Engine.h"
 #include "Player.h"
+#include "Input.h"
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -17,6 +18,8 @@ bool Engine::Initialize()
 
 	if (!RegisterClass(&wc))
 		return false;
+
+	renderer.Initialize(hwnd, width, height);
 
 	hwnd = CreateWindowEx(
 		0,
@@ -38,37 +41,6 @@ bool Engine::Initialize()
 	SetCapture(hwnd);
 	ShowCursor(FALSE);
 
-	// NOW safe to grab device context
-	hdc = GetDC(hwnd);
-
-	memoryDC = CreateCompatibleDC(hdc);
-
-	BITMAPINFO bmi = {};
-	bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-	bmi.bmiHeader.biWidth = width;
-	bmi.bmiHeader.biHeight = -height;
-	bmi.bmiHeader.biPlanes = 1;
-	bmi.bmiHeader.biBitCount = 32;
-	bmi.bmiHeader.biCompression = BI_RGB;
-
-	void* ptr = nullptr;
-
-	bitmap = CreateDIBSection(
-		hdc,
-		&bmi,
-		DIB_RGB_COLORS,
-		&ptr,
-		nullptr,
-		0
-	);
-
-	if (!bitmap || !ptr)
-		return false; // FIX: validate framebuffer
-
-	SelectObject(memoryDC, bitmap);
-
-	pixels = static_cast<unsigned int*>(ptr);
-
 	return true;
 }
 
@@ -87,8 +59,7 @@ int Engine::Run()
 			DispatchMessage(&msg);
 		}
 
-		Update();
-		Render();
+		Tick();   // engine now delegates work here
 
 		Sleep(16); // ~60 FPS cap
 	}
@@ -96,30 +67,12 @@ int Engine::Run()
 	return 0;
 }
 
-void Engine::ClearScreen(unsigned int color)
+void Engine::Tick()
 {
-	for (int i = 0; i < width * height; i++)
-	{
-		pixels[i] = color;
-	}
-}
+	Input::Update();
 
-void Engine::DrawRect(int x, int y, int w, int h, unsigned int color)
-{
-	for (int py = 0; py < h; py++)
-	{
-		for (int px = 0; px < w; px++)
-		{
-			int drawX = x + px;
-			int drawY = y + py;
-
-			if (drawX >= 0 && drawX < width &&
-				drawY >= 0 && drawY < height)
-			{
-				pixels[drawY * width + drawX] = color;
-			}
-		}
-	}
+	Update();
+	Render();
 }
 
 void Engine::Update()
@@ -129,25 +82,17 @@ void Engine::Update()
 
 void Engine::Render()
 {
-	ClearScreen(0x00202020);
+	renderer.Clear(0x00202020);
 
-	DrawRect(
-		static_cast<int>(playerX),
-		static_cast<int>(playerY),
-		10,
-		10,
-		0x0000FF00
-	);
+	static int x = 100;
+	static int y = 100;
 
-	BitBlt(
-		hdc,
-		0, 0,
-		width,
-		height,
-		memoryDC,
-		0, 0,
-		SRCCOPY
-	);
+	x += 2;
+	if (x > width) x = -10;
+
+	renderer.DrawRect(x, y, 10, 10, 0x0000FF00);
+
+	renderer.Present();
 }
 
 void Engine::Shutdown()
