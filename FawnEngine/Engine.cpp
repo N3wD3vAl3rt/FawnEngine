@@ -81,6 +81,7 @@ void Engine::Update()
 	Input::UpdateMouse(hwnd);
 	player.Update();
 	camera.Update({ player.GetX(), player.GetY() });
+	world.Update();
 }
 
 void Engine::Render()
@@ -89,6 +90,7 @@ void Engine::Render()
 
 	RenderWorld();
 	RenderPlayer();
+	world.Render();
 
 	renderer.Present();
 }

@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "Player.h"
 #include "Camera.h"
+#include "World.h"
 
 class Engine
 {
@@ -30,4 +31,5 @@ private:
 	Renderer renderer;
 	Player player;
 	Camera camera;
+	World world;
 };
