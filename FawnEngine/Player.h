@@ -1,10 +1,21 @@
 #pragma once
 
-extern float playerX;
-extern float playerY;
+#include "Vector2.h"
 
-extern float velocityX;
-extern float velocityY;
+class Player
+{
+public:
+	Player();
 
-extern float acceleration;
-extern float friction;
+	void Update();
+
+	float GetX() const;
+	float GetY() const;
+
+private:
+	Vector2 position;
+	Vector2 velocity;
+
+	float acceleration = 0.04f;
+	float friction = 0.88f;
+};

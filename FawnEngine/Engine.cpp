@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "Player.h"
 #include "Input.h"
+#include "Camera.h"
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -77,22 +78,34 @@ void Engine::Tick()
 
 void Engine::Update()
 {
-	// Temporary - game logic will go here
+	Input::UpdateMouse(hwnd);
+	player.Update();
+	camera.Update({ player.GetX(), player.GetY() });
 }
 
 void Engine::Render()
 {
 	renderer.Clear(0x00202020);
 
-	static int x = 100;
-	static int y = 100;
-
-	x += 2;
-	if (x > width) x = -10;
-
-	renderer.DrawRect(x, y, 10, 10, 0x0000FF00);
+	RenderWorld();
+	RenderPlayer();
 
 	renderer.Present();
+}
+
+void Engine::RenderWorld()
+{
+	// World will be managed by World/Entity system in v0.6.0
+}
+
+void Engine::RenderPlayer()
+{
+	Vector2 camPos = camera.GetPosition();
+
+	int screenX = (int)(player.GetX() - camPos.x);
+	int screenY = (int)(player.GetY() - camPos.y);
+
+	renderer.DrawRect(screenX, screenY, 16, 16, 0x0000FFFF);
 }
 
 void Engine::Shutdown()

@@ -1,9 +1,20 @@
 #pragma once
+#include "Vector2.h"
 
-extern float cameraX;
-extern float cameraY;
+class Camera
+{
+public:
+	Camera();
 
-extern float cameraYaw;
-extern float cameraPitch;
+	void Update(Vector2 target);
 
-extern float mouseSensitivity;
+	Vector2 GetPosition() const;
+
+private:
+	Vector2 position;
+
+	float pitch = 0.0f;
+	float yaw = 0.0f;
+
+	float mouseSensitivity = 0.1f;
+};
