@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Input.h"
 #include "Camera.h"
+#include "World.h"
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -20,7 +21,6 @@ bool Engine::Initialize()
 	if (!RegisterClass(&wc))
 		return false;
 
-	renderer.Initialize(hwnd, width, height);
 
 	hwnd = CreateWindowEx(
 		0,
@@ -37,6 +37,8 @@ bool Engine::Initialize()
 
 	if (!hwnd)
 		return false; // FIX: validate BEFORE anything else
+
+	renderer.Initialize(hwnd, width, height);
 
 	ShowWindow(hwnd, SW_SHOW);
 	SetCapture(hwnd);
@@ -79,8 +81,7 @@ void Engine::Tick()
 void Engine::Update()
 {
 	Input::UpdateMouse(hwnd);
-	player.Update();
-	camera.Update({ player.GetX(), player.GetY() });
+	camera.Update(world.GetPlayerPosition());
 	world.Update();
 }
 
@@ -88,26 +89,11 @@ void Engine::Render()
 {
 	renderer.Clear(0x00202020);
 
-	RenderWorld();
-	RenderPlayer();
-	world.Render();
-
-	renderer.Present();
-}
-
-void Engine::RenderWorld()
-{
-	// World will be managed by World/Entity system in v0.6.0
-}
-
-void Engine::RenderPlayer()
-{
 	Vector2 camPos = camera.GetPosition();
 
-	int screenX = (int)(player.GetX() - camPos.x);
-	int screenY = (int)(player.GetY() - camPos.y);
+	world.Render(camPos, renderer);
 
-	renderer.DrawRect(screenX, screenY, 16, 16, 0x0000FFFF);
+	renderer.Present();
 }
 
 void Engine::Shutdown()

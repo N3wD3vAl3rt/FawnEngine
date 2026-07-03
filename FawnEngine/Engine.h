@@ -19,9 +19,7 @@ private:
 	void Tick();
 	void Update();
 	void Render();
-	void RenderWorld();
-	void RenderPlayer();
-
+	
 	HINSTANCE hInstance = nullptr;
 	HWND hwnd = nullptr;
 
@@ -29,7 +27,6 @@ private:
 	int height = 720;
 
 	Renderer renderer;
-	Player player;
 	Camera camera;
 	World world;
 };

@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <Windows.h>
 #include "Input.h"
+#include "Renderer.h"
 
 Player::Player()
 {
@@ -50,4 +51,18 @@ float Player::GetX() const
 float Player::GetY() const
 {
 	return position.y;
+}
+
+void Player::Render(const Vector2& camPos, Renderer& renderer)
+{
+	int screenX = (int)(GetX() - camPos.x);
+	int screenY = (int)(GetY() - camPos.y);
+
+	renderer.DrawRect(
+		screenX,
+		screenY,
+		16,
+		16,
+		0x0000FFFF
+	);
 }
