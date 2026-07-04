@@ -1,8 +1,10 @@
 #include "World.h"
+#include "enemy.h"
 
 World::World()
 {
-	entityManager.AddEntity(std::make_unique<Player>());
+	entityManager.Spawn<Player>();
+	entityManager.Spawn<Enemy>();
 }
 
 void World::Update()

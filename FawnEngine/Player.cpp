@@ -66,3 +66,8 @@ void Player::Render(const Vector2& camPos, Renderer& renderer)
 		0x0000FFFF
 	);
 }
+
+AABB Player::GetBounds() const
+{
+	return { position.x, position.y, 16.0f, 16.0f };
+}

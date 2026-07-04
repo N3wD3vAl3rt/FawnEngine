@@ -1,12 +1,13 @@
 #pragma once
 
-#include "Vector2.h"
 #include "Entity.h"
+#include "Vector2.h"
+#include "Renderer.h"
 
-class Player : public Entity
+class Enemy : public Entity
 {
 public:
-	Player();
+	Enemy();
 
 	void Update() override;
 	void Render(const Vector2& camPos, Renderer& renderer) override;
@@ -17,6 +18,5 @@ public:
 	float GetY() const;
 
 private:
-	float acceleration = 0.04f;
-	float friction = 0.88f;
+	float speed = 1.0f;
 };
