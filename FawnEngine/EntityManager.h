@@ -7,6 +7,7 @@
 #include "Vector2.h"
 #include <cstddef>
 #include <type_traits>
+#include <utility>
 
 class EntityManager
 {
@@ -23,12 +24,13 @@ public:
 	Entity* GetEntityByIndex(std::size_t index) const;
 	Entity* GetFirstEntityOfType(EntityType type) const;
 
-	template<typename T>
-	T* Spawn()
+	template<typename T, typename... Args>
+	T* Spawn(Args&&... args)
 	{
 		static_assert(std::is_base_of<Entity, T>::value, "T must derive from Entity");
 
-		std::unique_ptr<T> entity = std::make_unique<T>();
+		std::unique_ptr<T> entity = std::make_unique<T>(std::forward<Args>(args)...);
+
 		T* ptr = entity.get();
 
 		entities.push_back(std::move(entity));

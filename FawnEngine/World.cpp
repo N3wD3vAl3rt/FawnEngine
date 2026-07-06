@@ -4,7 +4,10 @@
 World::World()
 {
 	entityManager.Spawn<Player>();
-	entityManager.Spawn<Enemy>();
+
+	entityManager.Spawn<Enemy>(300.0f, 200.0f);
+	entityManager.Spawn<Enemy>(500.0f, 300.0f);
+	entityManager.Spawn<Enemy>(700.0f, 400.0f);
 }
 
 void World::Update()

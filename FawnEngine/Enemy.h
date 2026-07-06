@@ -7,7 +7,7 @@
 class Enemy : public Entity
 {
 public:
-	Enemy();
+	Enemy(float x, float y);
 
 	void Update() override;
 	void Render(const Vector2& camPos, Renderer& renderer) override;

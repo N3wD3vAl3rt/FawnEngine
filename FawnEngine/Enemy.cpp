@@ -1,8 +1,8 @@
 #include "Enemy.h"
 
-Enemy::Enemy()
+Enemy::Enemy(float x, float y)
 {
-	position = { 200.0f, 200.0f };
+	position = { x, y };
 }
 
 void Enemy::Update()
@@ -17,12 +17,19 @@ void Enemy::Render(const Vector2& camPos, Renderer& renderer)
 	int screenX = (int)(GetX() - camPos.x);
 	int screenY = (int)(GetY() - camPos.y);
 
+	unsigned int color = 0x00FF0000;
+
+	if (IsHit())
+	{
+		color = 0x00FFFFFF;
+	}
+
 	renderer.DrawRect(
 		screenX,
 		screenY,
 		16,
 		16,
-		0x00FF0000 // red enemy
+		color
 	);
 }
 

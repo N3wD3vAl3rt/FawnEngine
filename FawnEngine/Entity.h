@@ -37,10 +37,13 @@ public:
 	void SetHealth(int value);
 	void TakeDamage(int amount);
 
+	bool IsHit() const { return hitFlashTimer > 0; }
+
 protected:
 	bool alive = true;
 	int health = 100;
 	int damageCooldown = 0;
+	int hitFlashTimer = 0;
 
 	Vector2 position;
 	Vector2 velocity;

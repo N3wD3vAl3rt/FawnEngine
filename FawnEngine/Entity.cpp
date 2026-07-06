@@ -11,6 +11,11 @@ void Entity::Update()
 	{
 		damageCooldown--;
 	}
+
+	if (hitFlashTimer > 0)
+	{
+		hitFlashTimer--;
+	}
 }
 
 void Entity::Render(const Vector2& camPos, Renderer& renderer)
@@ -45,6 +50,7 @@ void Entity::TakeDamage(int amount)
 	health -= amount;
 
 	damageCooldown = 30;  // 30 frames of protection
+	hitFlashTimer = 10;
 
 	if (health <= 0)
 	{
