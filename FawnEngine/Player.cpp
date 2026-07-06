@@ -14,11 +14,8 @@ Player::Player()
 
 void Player::Update()
 {
-	float delta = 1.0f;  // placeholder for now
-
-	position = position + velocity * delta;
-
-	float maxSpeed = 3.0f;
+	
+	float maxSpeed = 5.0f;
 
 	if (velocity.x > maxSpeed) velocity.x = maxSpeed;
 	if (velocity.x < -maxSpeed) velocity.x = -maxSpeed;

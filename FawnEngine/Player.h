@@ -19,6 +19,6 @@ public:
 	float GetY() const;
 
 private:
-	float acceleration = 0.04f;
-	float friction = 0.88f;
+	float acceleration = 0.20f;
+	float friction = 0.92f;
 };

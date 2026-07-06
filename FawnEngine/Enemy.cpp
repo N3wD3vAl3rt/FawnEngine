@@ -7,7 +7,7 @@ Enemy::Enemy()
 
 void Enemy::Update()
 {
-	 // No Movement For Now
+	position.x += speed;
 }
 
 void Enemy::Render(const Vector2& camPos, Renderer& renderer)
