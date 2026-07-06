@@ -47,6 +47,24 @@ void EntityManager::Update()
 		entity->Update();
 	}
 
+	for (auto& a : entities)
+	{
+		for (auto& b : entities)
+		{
+			if (a == b) continue;
+
+			if (CheckCollision(a->GetBounds(), b->GetBounds()))
+			{
+				// Only Player hits Enemy for now
+				if (a->GetType() == EntityType::Player &&
+					b->GetType() == EntityType::Enemy)
+				{
+					b->TakeDamage(100);
+				}
+			}
+		}
+	}
+
 	// 2. THEN remove dead ones
 	Cleanup();
 }
@@ -94,4 +112,17 @@ void EntityManager::Cleanup()
 		),
 		entities.end()
 	);
+}
+
+Entity* EntityManager::GetFirstEntityOfType(EntityType type) const
+{
+	for (const auto& entity : entities)
+	{
+		if (entity->GetType() == type)
+		{
+			return entity.get();
+		}
+	}
+
+	return nullptr;
 }

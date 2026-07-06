@@ -7,8 +7,7 @@ Enemy::Enemy()
 
 void Enemy::Update()
 {
-	// simple test movement (slow drift)
-	position.x += speed;
+	 // No Movement For Now
 }
 
 void Enemy::Render(const Vector2& camPos, Renderer& renderer)
@@ -37,4 +36,9 @@ float Enemy::GetY() const
 AABB Enemy::GetBounds() const
 {
 	return { position.x, position.y, 16.0f, 16.0f };
+}
+
+EntityType Enemy::GetType() const
+{
+	return EntityType::Enemy;
 }

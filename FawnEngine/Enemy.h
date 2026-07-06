@@ -14,6 +14,8 @@ public:
 
 	AABB GetBounds() const override;
 
+	EntityType GetType() const override;
+
 	float GetX() const;
 	float GetY() const;
 

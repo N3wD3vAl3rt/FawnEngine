@@ -71,3 +71,8 @@ AABB Player::GetBounds() const
 {
 	return { position.x, position.y, 16.0f, 16.0f };
 }
+
+EntityType Player::GetType() const
+{
+	return EntityType::Player;
+}

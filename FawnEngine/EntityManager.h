@@ -21,6 +21,7 @@ public:
 
 	Entity* GetFirstEntity() const;
 	Entity* GetEntityByIndex(std::size_t index) const;
+	Entity* GetFirstEntityOfType(EntityType type) const;
 
 	template<typename T>
 	T* Spawn()
