@@ -7,6 +7,8 @@ Enemy::Enemy()
 
 void Enemy::Update()
 {
+	Entity::Update();
+
 	position.x += speed;
 }
 

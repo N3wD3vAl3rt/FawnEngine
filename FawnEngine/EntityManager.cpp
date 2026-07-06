@@ -59,7 +59,7 @@ void EntityManager::Update()
 				if (a->GetType() == EntityType::Player &&
 					b->GetType() == EntityType::Enemy)
 				{
-					b->TakeDamage(100);
+					b->TakeDamage(10);
 				}
 			}
 		}

@@ -14,7 +14,8 @@ Player::Player()
 
 void Player::Update()
 {
-	
+	Entity::Update();
+
 	float maxSpeed = 5.0f;
 
 	if (velocity.x > maxSpeed) velocity.x = maxSpeed;

@@ -7,6 +7,10 @@ Entity::Entity()
 
 void Entity::Update()
 {
+	if (damageCooldown > 0)
+	{
+		damageCooldown--;
+	}
 }
 
 void Entity::Render(const Vector2& camPos, Renderer& renderer)
@@ -35,7 +39,12 @@ void Entity::SetHealth(int value)
 
 void Entity::TakeDamage(int amount)
 {
+	if (damageCooldown > 0)
+		return;
+
 	health -= amount;
+
+	damageCooldown = 30;  // 30 frames of protection
 
 	if (health <= 0)
 	{

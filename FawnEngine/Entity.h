@@ -40,6 +40,7 @@ public:
 protected:
 	bool alive = true;
 	int health = 100;
+	int damageCooldown = 0;
 
 	Vector2 position;
 	Vector2 velocity;
