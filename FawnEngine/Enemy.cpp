@@ -5,9 +5,9 @@ Enemy::Enemy(float x, float y)
 	position = { x, y };
 }
 
-void Enemy::Update()
+void Enemy::Update(float deltaTime)
 {
-	Entity::Update();
+	Entity::Update(deltaTime);
 
 	position.x += speed;
 }

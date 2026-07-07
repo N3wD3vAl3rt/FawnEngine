@@ -1,15 +1,13 @@
 #pragma once
 
-#include "Player.h"
-#include "Vector2.h"
+#include "World.h"
 #include "Renderer.h"
-#include <vector>
-#include "EntityManager.h"
+#include "Vector2.h"
 
-class World
+class Game
 {
 public:
-	World();
+	Game();
 
 	void Update(float deltaTime);
 	void Render(const Vector2& camPos, Renderer& renderer);
@@ -17,5 +15,5 @@ public:
 	Vector2 GetPlayerPosition() const;
 
 private:
-	EntityManager entityManager;
+	World world;
 };

@@ -11,6 +11,8 @@ bool Engine::Initialize()
 {
 	hInstance = GetModuleHandle(nullptr);
 
+	Time::Initialize();
+
 	const wchar_t CLASS_NAME[] = L"FawnWindowClass";
 
 	WNDCLASS wc = {};
@@ -25,7 +27,7 @@ bool Engine::Initialize()
 	hwnd = CreateWindowEx(
 		0,
 		CLASS_NAME,
-		L"Fawn Engine",
+		L"Fawn Engine v0.8.1",
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		1280, 720,
@@ -80,9 +82,11 @@ void Engine::Tick()
 
 void Engine::Update()
 {
+	Time::Update();
+
 	Input::UpdateMouse(hwnd);
-	camera.Update(world.GetPlayerPosition());
-	world.Update();
+	camera.Update(game.GetPlayerPosition());
+	game.Update(Time::GetDeltaTime());
 }
 
 void Engine::Render()
@@ -91,7 +95,7 @@ void Engine::Render()
 
 	Vector2 camPos = camera.GetPosition();
 
-	world.Render(camPos, renderer);
+	game.Render(camPos, renderer);
 
 	renderer.Present();
 }

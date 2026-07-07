@@ -10,9 +10,9 @@ World::World()
 	entityManager.Spawn<Enemy>(700.0f, 400.0f);
 }
 
-void World::Update()
+void World::Update(float deltaTime)
 {
-	entityManager.Update();
+	entityManager.Update(deltaTime);
 }
 
 void World::Render(const Vector2& camPos, Renderer& renderer)

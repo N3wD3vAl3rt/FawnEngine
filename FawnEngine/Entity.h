@@ -24,7 +24,7 @@ public:
 	
 	virtual EntityType GetType() const = 0;
 
-	virtual void Update();
+	virtual void Update(float deltaTime);
 	virtual void Render(const Vector2& camPos, class Renderer& renderer);
 
 	float GetX() const;

@@ -9,7 +9,7 @@ class Enemy : public Entity
 public:
 	Enemy(float x, float y);
 
-	void Update() override;
+	void Update(float deltaTime) override;
 	void Render(const Vector2& camPos, Renderer& renderer) override;
 
 	AABB GetBounds() const override;

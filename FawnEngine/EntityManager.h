@@ -15,7 +15,7 @@ public:
 	EntityManager();
 	~EntityManager();
 
-	void Update();
+	void Update(float deltaTime);
 	void Render(const Vector2& camPos, Renderer& renderer);
 
 	void AddEntity(std::unique_ptr<Entity> entity);

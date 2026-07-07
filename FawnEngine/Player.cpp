@@ -12,9 +12,9 @@ Player::Player()
 	velocity.y = 0.0f;
 }
 
-void Player::Update()
+void Player::Update(float deltaTime)
 {
-	Entity::Update();
+	Entity::Update(deltaTime);
 
 	float maxSpeed = 5.0f;
 

@@ -5,7 +5,7 @@ Entity::Entity()
 {
 }
 
-void Entity::Update()
+void Entity::Update(float deltaTime)
 {
 	if (damageCooldown > 0)
 	{

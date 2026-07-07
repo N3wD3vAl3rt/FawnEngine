@@ -39,12 +39,12 @@ void EntityManager::AddEntity(std::unique_ptr<Entity> entity)
 	entities.push_back(std::move(entity));
 }
 
-void EntityManager::Update()
+void EntityManager::Update(float deltaTime)
 {
 	// 1. Update all entities first
 	for (auto& entity : entities)
 	{
-		entity->Update();
+		entity->Update(deltaTime);
 	}
 
 	for (auto& a : entities)
