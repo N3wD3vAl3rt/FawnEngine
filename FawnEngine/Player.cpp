@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "Input.h"
 #include "Renderer.h"
+#include <cmath>
 
 Player::Player()
 {
@@ -16,7 +17,7 @@ void Player::Update(float deltaTime)
 {
 	Entity::Update(deltaTime);
 
-	float maxSpeed = 5.0f;
+	float maxSpeed = 300.0f;
 
 	if (velocity.x > maxSpeed) velocity.x = maxSpeed;
 	if (velocity.x < -maxSpeed) velocity.x = -maxSpeed;
@@ -31,14 +32,16 @@ void Player::Update(float deltaTime)
 	if (Input::IsKeyDown('A')) inputDir.x -= 1;
 	if (Input::IsKeyDown('D')) inputDir.x += 1;
 
-	velocity.x += inputDir.x * acceleration;
-	velocity.y += inputDir.y * acceleration;
+	velocity.x += inputDir.x * acceleration * deltaTime;
+	velocity.y += inputDir.y * acceleration * deltaTime;
 
 	// friction
-	velocity.x *= friction;
-	velocity.y *= friction;
+	float frameScale = deltaTime * 60.0f;
 
-	position = position + velocity;
+	velocity.x *= std::pow(friction, frameScale);
+	velocity.y *= std::pow(friction, frameScale);
+
+	position = position + (velocity * deltaTime);
 }
 
 float Player::GetX() const

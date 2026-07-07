@@ -16,3 +16,20 @@
 
 ### Fixed
 - N/A
+
+## v0.8.2
+
+### Added
+- Time subsystem
+- High-resolution timing using `std::chrono::steady_clock`
+- Engine-wide `deltaTime`
+- Total engine runtime tracking
+
+### Changed
+- Update pipeline now passes `deltaTime` from Engine to all entities.
+- Player movement is now frame-rate independent.
+- Player friction is frame-rate independent.
+
+### Improved
+- Engine timing consistency.
+- Movement behaves consistently across different frame rates.

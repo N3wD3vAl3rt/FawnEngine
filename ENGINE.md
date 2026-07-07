@@ -35,3 +35,26 @@ Fawn Engine is a lightweight, modular game engine designed for creating high-per
 - Plugin support
 - Multiplayer foundation
 - Scripting
+
+## Core Systems
+
+### Time
+
+The Time subsystem provides a centralized source of timing information for the engine.
+
+Responsibilities:
+
+- Calculate deltaTime using a high-resolution timer.
+- Track total engine runtime.
+- Update once per frame.
+- Provide timing information to all engine systems.
+
+Current Consumers:
+
+- Engine
+- Game
+- World
+- EntityManager
+- Entity
+- Player
+- Enemy
