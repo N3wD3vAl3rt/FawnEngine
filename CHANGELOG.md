@@ -48,3 +48,18 @@
 
 ### Improved
 - Engine architecture prepared for multiple scene types.
+
+## v0.8.4
+
+### Added
+- ResourceManager subsystem
+- Resource registration
+- Resource lookup support
+
+### Changed
+- Engine now owns and initializes the ResourceManager.
+- ResourceManager is initialized during engine startup and shut down during engine shutdown.
+
+### Improved
+- Established a centralized foundation for future asset management.
+- Continued modular manager architecture.

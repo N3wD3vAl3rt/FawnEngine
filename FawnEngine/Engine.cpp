@@ -13,6 +13,9 @@ bool Engine::Initialize()
 
 	Time::Initialize();
 
+	resourceManager.Initialize();
+	resourceManager.RegisterResource("Engine");
+
 	const wchar_t CLASS_NAME[] = L"FawnWindowClass";
 
 	WNDCLASS wc = {};
@@ -102,7 +105,7 @@ void Engine::Render()
 
 void Engine::Shutdown()
 {
-	// nothing yet
+	resourceManager.Shutdown();
 }
 
 HWND Engine::GetWindowHandle() const

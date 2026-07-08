@@ -59,8 +59,6 @@ Current Consumers:
 - Player
 - Enemy
 
-## Core Systems
-
 ### Scene
 
 The Scene subsystem defines a common interface for all engine scenes.
@@ -76,3 +74,23 @@ Future implementations:
 - Loading Screen
 - Settings
 - Credits
+
+### Resource Manager
+
+The Resource Manager is responsible for the centralized management of engine resources.
+
+Current Responsibilities
+
+- Initialize resource system
+- Shutdown resource system
+- Register resources
+- Query registered resources
+
+Future Responsibilities
+
+- Texture management
+- Sprite sheets
+- Fonts
+- Audio
+- Configuration files
+- Save-game metadata

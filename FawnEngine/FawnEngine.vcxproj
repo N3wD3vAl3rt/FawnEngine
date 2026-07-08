@@ -150,6 +150,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Time.h" />

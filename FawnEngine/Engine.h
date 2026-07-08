@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "Game.h"
 #include "Time.h"
+#include "ResourceManager.h"
 
 class Engine
 {
@@ -29,5 +30,6 @@ private:
 
 	Renderer renderer;
 	Camera camera;
+	ResourceManager resourceManager;
 	Game game;
 };
