@@ -3,6 +3,7 @@
 #include "World.h"
 #include "Renderer.h"
 #include "Vector2.h"
+#include "SceneManager.h"
 
 class Game
 {
@@ -15,5 +16,5 @@ public:
 	Vector2 GetPlayerPosition() const;
 
 private:
-	World world;
+	SceneManager sceneManager;
 };

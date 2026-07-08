@@ -58,3 +58,21 @@ Current Consumers:
 - Entity
 - Player
 - Enemy
+
+## Core Systems
+
+### Scene
+
+The Scene subsystem defines a common interface for all engine scenes.
+
+Current implementation:
+
+- World
+
+Future implementations:
+
+- Main Menu
+- Pause Menu
+- Loading Screen
+- Settings
+- Credits

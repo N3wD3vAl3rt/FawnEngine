@@ -33,3 +33,18 @@
 ### Improved
 - Engine timing consistency.
 - Movement behaves consistently across different frame rates.
+
+## v0.8.3
+
+### Added
+- Scene interface
+- SceneManager
+- Scene abstraction layer
+
+### Changed
+- World now derives from Scene.
+- Game now owns a SceneManager instead of a World.
+- Player position is retrieved through the active Scene.
+
+### Improved
+- Engine architecture prepared for multiple scene types.

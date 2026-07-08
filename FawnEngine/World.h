@@ -5,16 +5,17 @@
 #include "Renderer.h"
 #include <vector>
 #include "EntityManager.h"
+#include "Scene.h"
 
-class World
+class World : public Scene
 {
 public:
 	World();
 
-	void Update(float deltaTime);
-	void Render(const Vector2& camPos, Renderer& renderer);
+	void Update(float deltaTime) override;
+	void Render(const Vector2& camPos, Renderer& renderer) override;
 
-	Vector2 GetPlayerPosition() const;
+	Vector2 GetPlayerPosition() const override;
 
 private:
 	EntityManager entityManager;
