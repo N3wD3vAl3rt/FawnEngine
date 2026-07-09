@@ -63,3 +63,19 @@
 ### Improved
 - Established a centralized foundation for future asset management.
 - Continued modular manager architecture.
+
+## v0.8.5
+
+### Added
+- Expanded ENGINE.md
+- Core engineering principles
+- Fawn Test
+- Development workflow
+- Long-term engine goals
+- Target hardware documentation
+- High-level engine layer overview
+
+### Improved
+- Established the long-term engineering philosophy of Fawn Engine.
+- Defined development standards for future versions.
+
