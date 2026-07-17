@@ -6,6 +6,7 @@
 #include <vector>
 #include "EntityManager.h"
 #include "Scene.h"
+#include "Sprite.h"
 
 class World : public Scene
 {
@@ -19,4 +20,6 @@ public:
 
 private:
 	EntityManager entityManager;
+
+	Sprite testSprite{8, 8};
 };

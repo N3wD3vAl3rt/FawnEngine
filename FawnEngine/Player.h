@@ -2,6 +2,9 @@
 
 #include "Vector2.h"
 #include "Entity.h"
+#include "Sprite.h"
+#include "AnimationController.h"
+#include "PlayerState.h"
 
 class Player : public Entity
 {
@@ -19,6 +22,10 @@ public:
 	float GetY() const;
 
 private:
+	AnimationController animationController;
+
+	PlayerState state = PlayerState::Idle;
+
 	float acceleration = 250.0f;
 	float friction = 0.92f;
 };

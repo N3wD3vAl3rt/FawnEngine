@@ -46,9 +46,7 @@ bool Engine::Initialize()
 	renderer.Initialize(hwnd, width, height);
 
 	ShowWindow(hwnd, SW_SHOW);
-	SetCapture(hwnd);
-	ShowCursor(FALSE);
-
+	
 	return true;
 }
 

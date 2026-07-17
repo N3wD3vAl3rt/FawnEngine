@@ -45,20 +45,24 @@ void Renderer::Clear(unsigned int color)
 	}
 }
 
+void Renderer::DrawPixel(int x, int y, unsigned int color)
+{
+	if (x < 0 || x >= width ||
+		y < 0 || y >= height)
+	{
+		return;
+	}
+
+	pixels[y * width + x] = color;
+}
+
 void Renderer::DrawRect(int x, int y, int w, int h, unsigned int color)
 {
 	for (int py = 0; py < h; py++)
 	{
 		for (int px = 0; px < w; px++)
 		{
-			int drawX = x + px;
-			int drawY = y + py;
-
-			if (drawX >= 0 && drawX < width &&
-				drawY >= 0 && drawY < height)
-			{
-				pixels[drawY * width + drawX] = color;
-			}
+			DrawPixel(x + px, y + py, color);
 		}
 	}
 }
@@ -76,3 +80,24 @@ void Renderer::Present()
 	);
 }
 
+void Renderer::DrawSprite(
+	int x,
+	int y,
+	const Sprite& sprite)
+{
+	const unsigned int* spritePixels = sprite.GetPixels();
+
+	int spriteWidth = sprite.GetWidth();
+	int spriteHeight = sprite.GetHeight();
+
+	for (int py = 0; py < spriteHeight; py++)
+	{
+		for (int px = 0; px < spriteWidth; px++)
+		{
+			DrawPixel(
+				x + px,
+				y + py,
+				spritePixels[py * spriteWidth + px]);
+		}
+	}
+}

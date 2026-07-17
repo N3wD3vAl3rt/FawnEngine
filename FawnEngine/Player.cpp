@@ -11,6 +11,50 @@ Player::Player()
 
 	velocity.x = 0.0f;
 	velocity.y = 0.0f;
+
+	Animation idleAnimation;
+
+	Sprite idleFrame1(16, 16);
+	idleFrame1.Fill(0x0000FF);
+
+	Sprite idleFrame2(16, 16);
+	idleFrame2.Fill(0x000088);
+
+	for (int y = 4; y < 12; y++)
+	{
+		for (int x = 4; x < 12; x++)
+		{
+			idleFrame2.SetPixel(x, y, 0x00FFFF);
+		}
+	}
+
+	idleAnimation.AddFrame(idleFrame1);
+	idleAnimation.AddFrame(idleFrame2);
+
+	animationController.AddAnimation(AnimationState::Idle, idleAnimation);
+	animationController.Play(AnimationState::Idle);
+
+
+	Animation walkAnimation;
+
+	Sprite walkFrame1(16, 16);
+	walkFrame1.Fill(0x00AA00);
+
+	Sprite walkFrame2(16, 16);
+	walkFrame2.Fill(0x00FF00);
+
+	for (int y = 4; y < 12; y++)
+	{
+		for (int x = 4; x < 12; x++)
+		{
+			walkFrame2.SetPixel(x, y, 0xFFFFFF);
+		}
+	}
+
+	walkAnimation.AddFrame(walkFrame1);
+	walkAnimation.AddFrame(walkFrame2);
+
+	animationController.AddAnimation(AnimationState::Walk, walkAnimation);
 }
 
 void Player::Update(float deltaTime)
@@ -42,6 +86,31 @@ void Player::Update(float deltaTime)
 	velocity.y *= std::pow(friction, frameScale);
 
 	position = position + (velocity * deltaTime);
+
+	const float movementThreshold = 1.0f;
+
+	if (std::abs(velocity.x) > movementThreshold ||
+		std::abs(velocity.y) > movementThreshold)
+	{
+		state = PlayerState::Walking;
+	}
+	else
+	{
+		state = PlayerState::Idle;
+	}
+
+	switch (state)
+	{
+	case PlayerState::Idle:
+		animationController.Play(AnimationState::Idle);
+		break;
+
+	case PlayerState::Walking:
+		animationController.Play(AnimationState::Walk);
+		break;
+	}
+
+	animationController.Update(deltaTime);
 }
 
 float Player::GetX() const
@@ -59,18 +128,22 @@ void Player::Render(const Vector2& camPos, Renderer& renderer)
 	int screenX = (int)(GetX() - camPos.x);
 	int screenY = (int)(GetY() - camPos.y);
 
-	renderer.DrawRect(
+	renderer.DrawSprite(
 		screenX,
 		screenY,
-		16,
-		16,
-		0x0000FFFF
+		animationController.GetCurrentFrame()
 	);
 }
 
 AABB Player::GetBounds() const
 {
-	return { position.x, position.y, 16.0f, 16.0f };
+	return
+	{
+	position.x,
+	position.y,
+	static_cast<float>(animationController.GetCurrentFrame().GetWidth()),
+	static_cast<float>(animationController.GetCurrentFrame().GetHeight())
+	};
 }
 
 EntityType Player::GetType() const
