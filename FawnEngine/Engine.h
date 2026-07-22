@@ -7,6 +7,7 @@
 #include "Game.h"
 #include "Time.h"
 #include "ResourceManager.h"
+#include "Texture.h"
 
 class Engine
 {

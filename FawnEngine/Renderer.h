@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include "Sprite.h"
+#include "Texture.h"
 
 class Renderer
 {
@@ -10,6 +11,8 @@ public:
 	void DrawRect(int x, int y, int w, int h, unsigned int color);
 	void DrawPixel(int x, int y, unsigned int color);
 	void Present();
+
+	void DrawTexture(const Texture& texture, int x, int y);
 
 	void DrawSprite(
 		int x,

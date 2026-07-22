@@ -101,3 +101,27 @@ void Renderer::DrawSprite(
 		}
 	}
 }
+
+void Renderer::DrawTexture(const Texture& texture, int x, int y)
+{
+	const Image& image = texture.GetImage();
+
+	const unsigned char* pixels = image.GetPixels();
+
+	if (!pixels)
+		return;
+
+	int width = image.GetWidth();
+	int height = image.GetHeight();
+
+	for (int iy = 0; iy < height; iy++)
+	{
+		for (int ix = 0; ix < width; ix++)
+		{
+			DrawPixel(
+				x + ix,
+				y + iy,
+				image.GetPixel(ix, iy));
+		}
+	}
+}

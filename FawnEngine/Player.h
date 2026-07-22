@@ -5,6 +5,9 @@
 #include "Sprite.h"
 #include "AnimationController.h"
 #include "PlayerState.h"
+#include "SpriteSheet.h"
+#include "Texture.h"
+#include <memory>
 
 class Player : public Entity
 {
@@ -23,6 +26,7 @@ public:
 
 private:
 	AnimationController animationController;
+	SpriteSheet spriteSheet;
 
 	PlayerState state = PlayerState::Idle;
 

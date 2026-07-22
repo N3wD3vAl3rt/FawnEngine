@@ -4,6 +4,7 @@
 #include "Input.h"
 #include "Camera.h"
 #include "World.h"
+#include "Version.h"
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -14,7 +15,13 @@ bool Engine::Initialize()
 	Time::Initialize();
 
 	resourceManager.Initialize();
-	resourceManager.RegisterResource("Engine");
+
+	if (!resourceManager.LoadTexture(
+		"test",
+		"Assets/Textures/test.png"))
+	{
+		return false;
+	}
 
 	const wchar_t CLASS_NAME[] = L"FawnWindowClass";
 
@@ -26,14 +33,20 @@ bool Engine::Initialize()
 	if (!RegisterClass(&wc))
 		return false;
 
+	std::string title = "Fawn Engine v";
+	title += FAWN_ENGINE_VERSION_STRING;
+
+	std::wstring windowTitle(title.begin(), title.end());
 
 	hwnd = CreateWindowEx(
 		0,
 		CLASS_NAME,
-		L"Fawn Engine v0.8.1",
+		windowTitle.c_str(),
 		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT,
-		1280, 720,
+		CW_USEDEFAULT,
+		CW_USEDEFAULT,
+		1280,
+		720,
 		nullptr,
 		nullptr,
 		hInstance,

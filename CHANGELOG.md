@@ -79,3 +79,27 @@
 - Established the long-term engineering philosophy of Fawn Engine.
 - Defined development standards for future versions.
 
+## v0.10.1
+
+### Added
+- Image loading system
+- Texture class
+- Shared texture ownership
+- Sprite constructor from `Image`
+- SpriteSheet system
+- `Image::GetPixel()`
+- PNG texture loading pipeline
+
+### Changed
+- ResourceManager now manages loaded textures.
+- Rendering pipeline prepared for image-backed sprites.
+- Sprite creation now supports both procedural and image-based sprites.
+
+### Improved
+- Completed the first asset pipeline.
+- Established the foundation for animated sprites, tile maps, and UI assets.
+- Improved rendering architecture for future asset-driven development.
+
+### Fixed
+- Sprite extraction workflow improvements.
+- General asset pipeline stability.

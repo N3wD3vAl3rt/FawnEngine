@@ -4,9 +4,11 @@
 #include "Vector2.h"
 #include "Renderer.h"
 #include <vector>
+#include <memory>
 #include "EntityManager.h"
 #include "Scene.h"
 #include "Sprite.h"
+#include "Texture.h"
 
 class World : public Scene
 {

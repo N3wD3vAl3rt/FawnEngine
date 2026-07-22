@@ -6,20 +6,39 @@ ResourceManager::ResourceManager()
 
 void ResourceManager::Initialize()
 {
-	resources.clear();
+    textures.clear();
 }
 
 void ResourceManager::Shutdown()
 {
-	resources.clear();
+    textures.clear();
 }
 
-void ResourceManager::RegisterResource(const std::string& name)
+bool ResourceManager::LoadTexture(
+    const std::string& name,
+    const std::string& filename)
 {
-	resources[name] = true;
+    auto texture = std::make_shared<Texture>();
+
+    if (!texture->Load(filename))
+    {
+        return false;
+    }
+
+    textures[name] = texture;
+
+    return true;
 }
 
-bool ResourceManager::HasResource(const std::string& name) const
+std::shared_ptr<Texture> ResourceManager::GetTexture(
+    const std::string& name) const
 {
-	return resources.find(name) != resources.end();
+    auto it = textures.find(name);
+
+    if (it == textures.end())
+    {
+        return nullptr;
+    }
+
+    return it->second;
 }

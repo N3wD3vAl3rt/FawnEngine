@@ -5,6 +5,20 @@ Sprite::Sprite(int width, int height)
 {
 }
 
+Sprite::Sprite(const Image& image)
+	: width(image.GetWidth()),
+	height(image.GetHeight()),
+	pixels(width* height, 0)
+{
+	for (int y = 0; y < height; y++)
+	{
+		for (int x = 0; x < width; x++)
+		{
+			pixels[y * width + x] = image.GetPixel(x, y);
+		}
+	}
+}
+
 int Sprite::GetWidth() const
 {
 	return width;

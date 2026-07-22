@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "Vector2.h"
 #include "SceneManager.h"
+#include "EngineContext.h"
 
 class Game
 {
